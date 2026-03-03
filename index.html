@@ -12,7 +12,7 @@
       --cor-fundo-geral: #272727;
       --cor-texto-primaria: #7A7772;
       --cor-texto-secundaria: #ffffff;
-      --cor-hover: #f19a02;
+      --cor-hover: #00000000;
       --cor-card-bg: #272727;
       --cor-borda: #000000;
     }
@@ -84,55 +84,127 @@
     }
 
     /* ========== HERO SECTION ========== */
-    #heroSection.hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                  url("foto1.jpeg") center center / cover no-repeat;
-      padding: 15rem 2rem;
-      min-height: 100px;
+    #heroSection {
+      position: relative;
+      padding: 5rem 2rem;
+      min-height: 600px;
+      background: var(--cor-fundo-geral);
+      overflow: hidden;
     }
+    
+    /* Camada de imagem de fundo com transparência controlável */
+    #heroSection::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("foto1.jpeg") center center / cover no-repeat;
+      opacity: 0.4; /* 🔧 AJUSTE AQUI: 0.1 (mais transparente) a 1.0 (opaco) */
+      z-index: 0;
+    }
+    
+    /* Overlay escuro para legibilidade */
+    #heroSection::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(39, 39, 39, 0.85);
+      z-index: 1;
+    }
+    
     .hero-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      align-items: center;
     }
-    @media (min-width: 768px) {
+    
+    @media (min-width: 992px) {
       .hero-container {
-        flex-direction: row;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 4rem;
       }
     }
+    
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+    }
+    
     .hero-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: bold;
       background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria), var(--cor-texto-secundaria));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
     }
+    
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+    }
+    
     .hero-title-highlight {
       color: var(--cor-texto-secundaria);
     }
+    
     .hero-paragraph {
-      font-size: 1.125rem;
+      font-size: 1.1rem;
       color: var(--cor-texto-secundaria);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      max-width: 500px;
     }
+    
     .hero-button {
       background-color: var(--cor-texto-secundaria);
       color: #000000;
       border: none;
-      padding: 0.75rem 2rem;
+      padding: 0.875rem 2.5rem;
       border-radius: 0.5rem;
-      font-weight: bold;
+      font-weight: 600;
       transition: all 0.3s ease;
       display: inline-block;
+      text-decoration: none;
+      align-self: flex-start;
+      cursor: pointer;
     }
+    
     .hero-button:hover {
       background-color: var(--cor-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(241, 154, 2, 0.3);
+    }
+    
+    .hero-image-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-image {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border: 3px solid var(--cor-hover);
     }
 
     /* ========== SEÇÃO SERVIÇOS ========== */
@@ -147,6 +219,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-align: center;
     }
     #servicesTitle .text-gold {
       background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria));
@@ -156,28 +229,43 @@
     }
     .services-description {
       max-width: 900px;
-      margin: 0 auto 2rem;
+      margin: 1rem auto 2rem;
       color: var(--cor-texto-secundaria);
       font-size: 1rem;
       text-align: center;
     }
+    
+    /* Grid de serviços - cards CENTRALIZADOS */
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 280px);
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center; /* ✅ CENTRALIZADO */
       gap: 1.5rem;
-      justify-content: center;
-      margin-top: 2rem;
+      padding: 0 1.5rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
-    @media (min-width: 768px) and (max-width: 1023px) {
+    
+    .services-grid::-webkit-scrollbar {
+      display: none;
+    }
+    
+    @media (max-width: 900px) {
       .services-grid {
-        grid-template-columns: repeat(2, 280px);
+        flex-wrap: wrap;
+        justify-content: center;
       }
     }
-    @media (max-width: 767px) {
+    
+    @media (max-width: 600px) {
       .services-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
       }
     }
+    
     .service-card {
       background: var(--cor-card-bg);
       border-top: 4px solid var(--cor-borda);
@@ -185,21 +273,27 @@
       box-shadow: 0 4px 10px rgba(115, 100, 85, 0.28);
       padding: 1.2rem;
       transition: transform 0.3s ease;
+      min-width: 280px;
+      max-width: 280px;
       width: 280px;
-      margin: 0 auto;
       display: block;
       text-decoration: none;
       color: inherit;
+      flex-shrink: 0;
     }
+    
     .service-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(241, 154, 2, 0.25);
     }
+    
     .service-icon {
       color: var(--cor-texto-primaria);
       font-size: 2rem;
       margin-bottom: 1rem;
       text-align: center;
     }
+    
     .service-title {
       font-size: 1.25rem;
       font-weight: bold;
@@ -207,11 +301,14 @@
       margin-bottom: 0.75rem;
       text-align: center;
     }
+    
     .service-text {
       color: var(--cor-texto-secundaria);
-      font-size: 1rem;
+      font-size: 0.95rem;
       text-align: center;
+      line-height: 1.5;
     }
+    
     #servicos .leia-mais {
       margin-top: 1rem;
       color: var(--cor-hover);
@@ -219,7 +316,9 @@
       text-align: center;
       cursor: pointer;
       transition: color 0.2s;
+      font-size: 0.9rem;
     }
+    
     #servicos .leia-mais:hover {
       color: var(--cor-texto-secundaria);
       text-decoration: underline;
@@ -245,10 +344,13 @@
       }
     }
     #sobre .about-image img {
-      width: 70%;
+      width: 100%;
+      max-width: 400px;
       height: auto;
       display: block;
       border-radius: 0.75rem;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     #sobre .about-title {
       font-size: 2rem;
@@ -299,6 +401,7 @@
       background-clip: text;
       color: transparent;
       -webkit-text-fill-color: transparent;
+      text-align: center;
     }
     .testimonial-subtitle {
       font-size: 1.125rem;
@@ -313,6 +416,9 @@
       border-radius: 0.75rem;
       padding: 2rem;
       box-shadow: 0 4px 16px rgba(122, 119, 114, 0.89);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
     .testimonial-stars .text-secondary {
       color: #facc01;
@@ -322,6 +428,8 @@
       font-style: italic;
       color: var(--cor-texto-secundaria);
       margin-bottom: 1.5rem;
+      flex-grow: 1;
+      line-height: 1.5;
     }
     .testimonial-nome, .testimonial-local {
       color: var(--cor-texto-secundaria);
@@ -337,9 +445,10 @@
       align-items: center;
       justify-content: center;
       margin-right: 1rem;
+      flex-shrink: 0;
     }
 
-    /* ========== ABORDAGEM ========== */
+    /* ========== ABORDAGEM / COMO FUNCIONA ========== */
     .approach-section {
       background: linear-gradient(135deg, var(--cor-fundo-geral), var(--cor-fundo-geral), var(--cor-fundo-geral));
       color: var(--cor-texto-secundaria);
@@ -354,6 +463,7 @@
       background-clip: text;
       color: transparent;
       -webkit-text-fill-color: transparent;
+      text-align: center;
     }
     .approach-title .text-gold {
       background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria));
@@ -369,6 +479,71 @@
       margin: 0 auto 2rem auto;
       text-align: center;
     }
+    
+    /* ✅ Grid personalizado: 3 cards em cima, 2 embaixo CENTRALIZADOS */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Top row - 3 cards distribuídos igualmente */
+    .approach-grid .approach-step:nth-child(1) {
+      grid-column: 1 / 3;
+    }
+    .approach-grid .approach-step:nth-child(2) {
+      grid-column: 3 / 5;
+    }
+    .approach-grid .approach-step:nth-child(3) {
+      grid-column: 5 / 7;
+    }
+    
+    /* Bottom row - 2 cards CENTRALIZADOS */
+    .approach-grid .approach-step:nth-child(4) {
+      grid-column: 2 / 4;
+    }
+    .approach-grid .approach-step:nth-child(5) {
+      grid-column: 4 / 6;
+    }
+    
+    @media (max-width: 900px) {
+      .approach-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: 
+          "card1 card2"
+          "card3 card4"
+          "card5 card5";
+      }
+      .approach-grid .approach-step:nth-child(1) { grid-area: card1; }
+      .approach-grid .approach-step:nth-child(2) { grid-area: card2; }
+      .approach-grid .approach-step:nth-child(3) { grid-area: card3; }
+      .approach-grid .approach-step:nth-child(4) { grid-area: card4; }
+      .approach-grid .approach-step:nth-child(5) { 
+        grid-area: card5; 
+        justify-self: center; 
+        width: 100%; 
+        max-width: 300px;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .approach-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: none;
+      }
+      .approach-grid .approach-step {
+        grid-column: auto !important;
+      }
+      .approach-grid .approach-step:nth-child(5) {
+        justify-self: center;
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+    
     .approach-step {
       background-color: rgba(255, 255, 255, 0.1);
       padding: 2rem;
@@ -376,24 +551,35 @@
       text-align: center;
       box-shadow: 0 4px 12px rgba(133, 133, 133, 0.89);
       transition: transform 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
+    
     .approach-step:hover {
       transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(241, 154, 2, 0.2);
     }
+    
     .approach-icon {
       font-size: 2.5rem;
       color: var(--cor-hover);
       margin-bottom: 1rem;
     }
+    
     .approach-step-title {
       color: var(--cor-texto-secundaria);
       font-size: 1.25rem;
       font-weight: bold;
       margin-bottom: 0.75rem;
     }
+    
     .approach-step-text {
       color: var(--cor-texto-secundaria);
-      font-size: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      flex-grow: 1;
     }
 
     /* ========== CONTATO ========== */
@@ -409,6 +595,7 @@
       background-clip: text;
       color: transparent;
       -webkit-text-fill-color: transparent;
+      text-align: center;
     }
     .contact-title .text-gold {
       background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria));
@@ -453,7 +640,7 @@
     .contact-form select:focus,
     .contact-form textarea:focus {
       outline: none;
-      border-color: #000000;
+      border-color: var(--cor-hover);
     }
     .contact-button {
       background-color: #ffffff;
@@ -473,9 +660,15 @@
       background-color: #ffffff;
       padding: 40px;
       border-radius: 8px;
-      box-shadow: 0 0 15px rgb(0, 0, 0);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       max-width: 480px;
       width: 100%;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .info-contato {
+        margin: 0;
+      }
     }
     .info-contato h3 {
       font-size: 1.5rem;
@@ -598,11 +791,13 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.3s;
       z-index: 999;
+      text-decoration: none;
     }
     .whatsapp-button:hover {
       background-color: #1ebe5d;
+      transform: scale(1.1);
     }
     .whatsapp-button i {
       font-size: 1.5rem;
@@ -630,11 +825,11 @@
         <ul class="flex space-x-8">
           <li><a href="#servicos" class="hover:text-gold transition-all">Serviços</a></li>
           <li><a href="#sobre" class="hover:text-gold transition-all">Sobre</a></li>
-          <li><a href="#equipe" class="hover:text-gold transition-all">Equipe</a></li>
+          <li><a href="#equipe" class="hover:text-gold transition-all">Como Funciona</a></li>
           <li><a href="#contato" class="hover:text-gold transition-all">Contato</a></li>
         </ul>
       </nav>
-      <button class="md:hidden focus:outline-none">
+      <button class="md:hidden focus:outline-none" aria-label="Menu">
         <i class="fas fa-bars text-2xl"></i>
       </button>
     </div>
@@ -642,16 +837,22 @@
 </header>
 
 <!-- Hero Section -->
-<section id="heroSection" class="hero-section">
+<section id="heroSection">
   <div class="hero-container">
-    <div class="hero-text">
-      <h2 id="heroTitle" class="hero-title text-4xl md:text-5xl font-bold mb-6">
+    <!-- Conteúdo à esquerda -->
+    <div class="hero-content">
+      <h2 id="heroTitle" class="hero-title">
         "Especialistas <span class="hero-title-highlight">em transformar</span> dívidas em soluções e recomeços"
       </h2>
-      <p class="hero-paragraph text-lg mb-8">
+      <p class="hero-paragraph">
         Atuação especializada em Direito Bancário e do Consumidor, com análise técnica detalhada e estratégia personalizada para cada caso.
       </p>
       <a href="#contato" class="hero-button">Solicitar análise do meu caso</a>
+    </div>
+    
+    <!-- Imagem à direita -->
+    <div class="hero-image-wrapper">
+      <img src="foto1.jpeg" alt="Dra. Mariana Leite" class="hero-image">
     </div>
   </div>
 </section>
@@ -662,31 +863,34 @@
     <h2 id="servicesTitle">Nossos <span class="text-gold">Serviços</span></h2>
     <p class="services-description">Clique no Card abaixo para conhecer melhor cada serviço que oferecemos!</p>
   </div>
-  <div class="services-grid mx-auto px-6">
+  <div class="services-grid">
     <a href="./negativacao-indevida/negativacao-indevida.html" class="service-card block">
       <div class="service-icon"><i class="fas fa-exclamation-triangle"></i></div>
       <h3 class="service-title">Revisão de Dívidas de Cartão de Crédito</h3>
       <p class="service-text">
-Analisamos detalhadamente o contrato e os encargos aplicados para identificar juros abusivos, cobranças indevidas e irregularidades.
-Com estratégia técnica adequada, é possível reduzir valores e reorganizar sua situação financeira de forma legal e segura.</p>
+        Analisamos detalhadamente o contrato e os encargos aplicados para identificar juros abusivos, cobranças indevidas e irregularidades.
+        Com estratégia técnica adequada, é possível reduzir valores e reorganizar sua situação financeira de forma legal e segura.
+      </p>
       <div class="leia-mais">Analisar minha dívida</div>
     </a>
     <a href="desconto-inss.html" class="service-card block">
       <div class="service-icon"><i class="fas fa-hand-holding-usd"></i></div>
       <h3 class="service-title">Fraudes e Golpes Bancários</h3>
-      <p class="service-text">Atuamos na responsabilização da instituição financeira em casos de fraudes, transferências indevidas, compras não reconhecidas e invasões de conta.
-Cada caso é analisado com estratégia específica para buscar a recuperação dos valores e a reparação dos danos.
-</p>
+      <p class="service-text">
+        Atuamos na responsabilização da instituição financeira em casos de fraudes, transferências indevidas, compras não reconhecidas e invasões de conta.
+        Cada caso é analisado com estratégia específica para buscar a recuperação dos valores e a reparação dos danos.
+      </p>
       <div class="leia-mais">Quero recuperar meu dinheiro</div>
     </a>
     <a href="./fraude-bancaria/fraude-bancaria.html" class="service-card block">
       <div class="service-icon"><i class="fas fa-user-shield"></i></div>
       <h3 class="service-title">Descontos Indevidos em Conta</h3>
-      <p class="service-text">Identificamos cobranças irregulares, empréstimos não contratados, tarifas indevidas e débitos automáticos abusivos.
-Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devolução dos valores cobrados indevidamente.</p>
+      <p class="service-text">
+        Identificamos cobranças irregulares, empréstimos não contratados, tarifas indevidas e débitos automáticos abusivos.
+        Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devolução dos valores cobrados indevidamente.
+      </p>
       <div class="leia-mais">Verificar descontos</div>
     </a>
-    
   </div>
 </section>
 
@@ -708,12 +912,11 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
           Durante 3 anos, atuou diretamente na defesa de instituições financeiras, experiência que lhe proporcionou profundo conhecimento sobre a estrutura interna dos bancos, estratégias processuais, políticas de negociação e análise contratual.
         </p>
         <p class="about-paragraph">
-         Hoje, utiliza essa visão estratégica para atuar exclusivamente na defesa de consumidores, oferecendo uma abordagem técnica, personalizada e orientada à melhor solução para cada caso.
+          Hoje, utiliza essa visão estratégica para atuar exclusivamente na defesa de consumidores, oferecendo uma abordagem técnica, personalizada e orientada à melhor solução para cada caso.
         </p>
         <p class="about-paragraph">
-         Sua atuação é pautada na análise detalhada de documentos, na estratégia jurídica individualizada e na busca por resultados concretos, sempre com transparência e responsabilidade.
+          Sua atuação é pautada na análise detalhada de documentos, na estratégia jurídica individualizada e na busca por resultados concretos, sempre com transparência e responsabilidade.
         </p>
-        
       </div>
     </div>
   </div>
@@ -782,14 +985,14 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
   </div>
 </section>
 
-<!-- Team/Approach Section -->
+<!-- Team/Approach Section - ✅ 3 cards em cima, 2 embaixo CENTRALIZADOS -->
 <section id="equipe" class="approach-section relative overflow-hidden">
   <div class="relative z-20 container mx-auto px-6 py-16 text-white">
     <div class="text-center mb-16">
       <h2 class="approach-title text-3xl font-bold">COMO <span class="text-gold"> FUNCIONA</span></h2>
       <p class="approach-subtitle text-lg">Nosso atendimento é estruturado, estratégico e totalmente personalizado. Cada caso é analisado com critério técnico para garantir a melhor solução possível.</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="approach-grid">
       <div class="approach-step">
         <div class="approach-icon"><i class="fas fa-search"></i></div>
         <h3 class="approach-step-title">Análise Inicial do Caso</h3>
@@ -802,16 +1005,16 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
       </div>
       <div class="approach-step">
         <div class="approach-icon"><i class="fas fa-gavel"></i></div>
-        <h3 class="approach-step-title">tuação Administrativa</h3>
+        <h3 class="approach-step-title">Atuação Administrativa</h3>
         <p class="approach-step-text">Sempre que possível, iniciamos com protocolos e tentativas de resolução diretamente junto à instituição financeira, buscando uma solução mais rápida e eficiente.</p>
       </div>
       <div class="approach-step">
-        <div class="approach-icon"><i class="fas fa-chess-knight"></i></div>
+        <div class="approach-icon"><i class="fas fa-scale-balanced"></i></div>
         <h3 class="approach-step-title">Ação Judicial (quando necessária)</h3>
         <p class="approach-step-text">Se não houver solução adequada na via administrativa, ingressamos com a medida judicial cabível, com estratégia personalizada e fundamentação técnica adequada ao seu caso.</p>
       </div>
       <div class="approach-step">
-        <div class="approach-icon"><i class="fas fa-chess-knight"></i></div>
+        <div class="approach-icon"><i class="fas fa-comments"></i></div>
         <h3 class="approach-step-title">Acompanhamento Transparente</h3>
         <p class="approach-step-text">Durante todo o processo, você recebe orientações claras sobre cada etapa. Prezamos por comunicação objetiva, segurança jurídica e acompanhamento responsável até a conclusão do caso.</p>
       </div>
@@ -832,9 +1035,9 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
     <div class="flex flex-col md:flex-row gap-10">
       <div class="md:w-1/2">
         <form action="#" method="POST" class="contact-form space-y-6">
-          <div><label for="nome">Seu Nome</label><input type="text" id="nome" name="nome"></div>
+          <div><label for="nome">Seu Nome</label><input type="text" id="nome" name="nome" required></div>
           <div><label for="email">Seu E-mail</label><input type="email" id="email" name="email"></div>
-          <div><label for="telefone">Seu Telefone</label><input type="tel" id="telefone" name="telefone"></div>
+          <div><label for="telefone">Seu Telefone</label><input type="tel" id="telefone" name="telefone" required></div>
           <div><label for="assunto">Assunto</label>
             <select id="assunto" name="assunto">
               <option value="">Selecione o assunto</option>
@@ -850,11 +1053,11 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
               <option value="outro">Outro</option>
             </select>
           </div>
-          <div><label for="mensagem">Sua Mensagem</label><textarea id="mensagem" name="mensagem" rows="4"></textarea></div>
+          <div><label for="mensagem">Sua Mensagem</label><textarea id="mensagem" name="mensagem" rows="4" required></textarea></div>
           <button type="submit" class="contact-button">Enviar Mensagem</button>
         </form>
       </div>
-      <div class="md:w-1/2">
+      <div class="md:w-1/2 flex items-center justify-center">
         <div class="info-contato">
           <h3>Informações de Contato</h3>
           <div class="space-y-6">
@@ -878,9 +1081,9 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
           <div class="redes-sociais">
             <h4>Nos siga nas redes sociais</h4>
             <div class="redes-icons">
-              <a href="https://wa.me/5517996815440" target="_blank"><i class="fab fa-whatsapp"></i></a>
-              <a href="https://www.instagram.com/adv.marianaleite/" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="https://www.tiktok.com/@adv.marianaleite" target="_blank"><i class="fab fa-tiktok"></i></a>
+              <a href="https://wa.me/5517996815440" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://www.instagram.com/adv.marianaleite/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.tiktok.com/@adv.marianaleite" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
           </div>
         </div>
@@ -915,6 +1118,7 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
 
 <!-- Scripts -->
 <script>
+  // Atualiza o ano no footer
   document.getElementById("anoAtual").textContent = new Date().getFullYear();
 
   // Formulário envia para WhatsApp
@@ -925,21 +1129,24 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
     const telefone = document.getElementById('telefone').value.trim();
     const assunto = document.getElementById('assunto').value.trim();
     const mensagem = document.getElementById('mensagem').value.trim();
+    
     if (!nome || !telefone || !mensagem) {
       alert('Por favor, preencha nome, telefone e mensagem.');
       return;
     }
+    
     const texto = 
       'Olá! Gostaria de falar sobre: ' + (assunto || 'Assunto não informado') + '%0A%0A' +
       '*Nome:* ' + nome + '%0A' +
       '*Telefone:* ' + telefone + '%0A' +
       '*Email:* ' + (email || 'Não informado') + '%0A' +
       '*Mensagem:* ' + mensagem;
+    
     const numero = '5517996815440';
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`, '_blank');
   });
 
-  // Rolagem suave
+  // Rolagem suave para links âncora
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const target = document.querySelector(this.getAttribute('href'));
@@ -948,6 +1155,21 @@ Quando comprovada a irregularidade, buscamos a suspensão dos descontos e a devo
         target.scrollIntoView({ behavior: 'smooth' });
       }
     });
+  });
+
+  // Menu mobile (simples toggle)
+  document.querySelector('button.md\\:hidden')?.addEventListener('click', function() {
+    const nav = document.querySelector('#mainHeader nav');
+    if (nav) {
+      nav.classList.toggle('hidden');
+      nav.classList.toggle('md:block');
+      nav.classList.toggle('absolute');
+      nav.classList.toggle('top-full');
+      nav.classList.toggle('left-0');
+      nav.classList.toggle('right-0');
+      nav.classList.toggle('bg-[#272727]');
+      nav.classList.toggle('p-4');
+    }
   });
 </script>
 
