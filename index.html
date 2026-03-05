@@ -8,49 +8,163 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/*
+========================================================================
+🎨 PAINEL DE CONTROLE - EDITE AS CORES E FONTES AQUI
+Sua cliente pode alterar TUDO apenas nesta seção abaixo.
+Não precisa mexer no resto do código!
+========================================================================
+*/
 :root {
---cor-fundo-geral: #272727;
---cor-texto-primaria: #7A7772;
---cor-texto-secundaria: #ffffff;
---cor-hover: #00000000;
---cor-card-bg: #272727;
---cor-borda: #000000;
-
-/* ========== TAMANHO DAS LOGOS - AJUSTE SEPARADO EM PX ========== */
---logo-size-header: 120px;    /* ← Tamanho da logo no HEADER */
---logo-size-footer: 160px;    /* ← Tamanho da logo no FOOTER */
+/* ========== 1. FONTES GERAIS ========== */
+--fonte-texto: 'Poppins', sans-serif;        /* Fonte para textos corridos */
+--fonte-titulos: 'Playfair Display', serif;  /* Fonte para títulos e chamadas */
+/* ========== 2. CORES GLOBAIS (PADRÃO) ========== */
+--cor-primaria: #F7F4EF ;      /* Cor principal do site */
+--cor-secundaria: #7A7772;    /* Cor secundária para detalhes */
+--cor-destaque: #F19A02;      /* Cor de destaque (botões, links) */
+--cor-branco: #ffffff;        /* Branco puro */
+--cor-preto: #000000;         /* Preto puro */
+--cor-borda-padrao: #000000;  /* Cor padrão das bordas */
+/* ========== 3. HEADER (MENU SUPERIOR) ========== */
+--header-bg: #F7F4EF ;                    /* Fundo do header */
+--header-titulo-cor: #3B2F2A ;            /* Cor do título "Mariana Leite" */
+--header-titulo-destaque-cor: #3B2F2A ;   /* Cor do título "Advocacia" */
+--header-frase-cor: #3B2F2A ;             /* Cor da frase "Direito Bancário..." */
+--header-menu-cor: #3B2F2A ;              /* Cor dos itens do menu */
+--header-menu-hover-cor: #ffffff;        /* Cor do menu ao passar o mouse */
+--header-logo-tamanho: 120px;            /* Tamanho da logo no header */
+/* ========== 4. HERO SECTION (SEÇÃO PRINCIPAL COM FOTO) ========== */
+--hero-bg: transparent;                      /* Fundo da seção hero (TRANSPARENTE para mostrar a imagem) */
+--hero-titulo-cor: #3B2F2A ;              /* Cor do título principal */
+--hero-titulo-destaque-cor: #3B2F2A ;     /* Cor do texto em destaque no título */
+--hero-texto-cor: #3B2F2A;               /* Cor do parágrafo */
+--hero-botao-bg: #ffffff;                /* Fundo do botão */
+--hero-botao-texto-cor: #000000;         /* Cor do texto do botão */
+--hero-botao-hover-bg: #7A7772;          /* Fundo do botão ao passar o mouse */
+--hero-botao-hover-texto-cor: #ffffff;   /* Cor do texto do botão ao passar o mouse */
+--hero-imagem-borda-cor: #ffffff;        /* Cor da borda da imagem */
+--hero-imagem-borda-tamanho: 3px;        /* Tamanho da borda da imagem */
+--hero-imagem-fundo: url("fundo_cores_alteradas.png"); /* Imagem de fundo */
+--hero-imagem-opacity: 1.7;              /* Opacidade da imagem de fundo (0.1 a 1.0) */
+--hero-overlay-opacity: 0.0;             /* Opacidade do overlay escuro (0.1 a 1.0) */
+/* ========== 5. SEÇÃO DE SERVIÇOS ========== */
+--servicos-bg: #F7F4EF;                  /* Fundo da seção de serviços */
+--servicos-titulo-cor: #3B2F2A ;          /* Cor do título "Nossos Serviços" */
+--servicos-titulo-destaque-cor: #3B2F2A ; /* Cor do texto em destaque no título */
+--servicos-descricao-cor: #3B2F2A;       /* Cor do texto descritivo */
+--servicos-card-bg: #F7F4EF ;             /* Fundo de cada card de serviço */
+--servicos-card-borda-cor: #7A7772;      /* Cor da borda dos cards */
+--servicos-card-borda-hover-cor: #ffffff;/* Cor da borda ao passar o mouse */
+--servicos-card-icon-cor: #7A7772;       /* Cor dos ícones dos cards */
+--servicos-card-titulo-cor: #3B2F2A;     /* Cor do título de cada card */
+--servicos-card-texto-cor: #3B2F2A;      /* Cor do texto de cada card */
+--servicos-card-link-cor: #3B2F2A;       /* Cor do link "Analisar minha dívida" */
+--servicos-card-link-hover-cor: #7A7772; /* Cor do link ao passar o mouse */
+/* ========== 6. SEÇÃO SOBRE ========== */
+--sobre-bg: linear-gradient(135deg, #E8DFD2  , #E8DFD2  , #E8DFD2  ); /* Fundo da seção */
+--sobre-titulo-cor: #3B2F2A ;             /* Cor do título "Sócia Fundadora" */
+--sobre-titulo-destaque-cor: #3B2F2A ;    /* Cor do nome "Mariana Leite" */
+--sobre-texto-cor: #000000;              /* Cor dos parágrafos */
+--sobre-tag-bg: #7A7772;                 /* Fundo das tags/etiquetas */
+--sobre-tag-texto-cor: #000000;          /* Cor do texto das tags */
+--sobre-tag-borda-cor: #000000;          /* Cor da borda das tags */
+/* ========== 7. SEÇÃO DEPOIMENTOS GOOGLE ========== */
+--depoimentos-bg: #F7F4EF ;               /* Fundo da seção */
+--depoimentos-titulo-cor: #3B2F2A ;       /* Cor do título "Avaliações do Google" */
+--depoimentos-subtitulo-cor: #3B2F2A ;    /* Cor do subtítulo */
+--depoimentos-card-bg: #ffffff;          /* Fundo de cada card de depoimento */
+--depoimentos-card-texto-cor: #4b5563;   /* Cor do texto do depoimento */
+--depoimentos-card-autor-cor: #1f2937;   /* Cor do nome do autor */
+--depoimentos-card-meta-cor: #6b7280;    /* Cor das informações adicionais */
+--depoimentos-botao-bg: #374151;         /* Fundo do botão "Ver todas" */
+--depoimentos-botao-texto-cor: #ffffff;  /* Cor do texto do botão */
+--depoimentos-botao-hover-bg: #1f2937;   /* Fundo do botão ao passar o mouse */
+/* ========== 8. SEÇÃO DEPOIMENTOS WHATSAPP (CAROUSEL) ========== */
+--whatsapp-depoimentos-bg: #F7F4EF ;      /* Fundo da seção */
+--whatsapp-depoimentos-titulo-cor: #3B2F2A ; /* Cor do título */
+--whatsapp-depoimentos-subtitulo-cor: #3B2F2A ; /* Cor do subtítulo */
+--whatsapp-card-bg: #ffffff;             /* Fundo de cada card */
+--whatsapp-card-borda-cor: #7A7772;      /* Cor da borda dos cards */
+--whatsapp-carousel-btn-bg: #ffffff;     /* Fundo dos botões de navegação */
+--whatsapp-carousel-btn-texto-cor: #7A7772; /* Cor dos ícones de navegação */
+--whatsapp-carousel-dot-bg: rgba(122, 119, 114, 0.4); /* Cor dos pontos indicadores */
+--whatsapp-carousel-dot-ativo-bg: #ffffff; /* Cor do ponto ativo */
+/* ========== 9. SEÇÃO COMO FUNCIONA ========== */
+--como-funciona-bg: #F7F4EF ;             /* Fundo da seção */
+--como-funciona-titulo-cor: #3B2F2A ;     /* Cor do título "COMO FUNCIONA" */
+--como-funciona-titulo-destaque-cor: #3B2F2A ; /* Cor do texto em destaque */
+--como-funciona-subtitulo-cor: #3B2F2A ;  /* Cor do subtítulo */
+--como-funciona-card-bg: rgba(255, 255, 255, 0.1); /* Fundo de cada card */
+--como-funciona-card-icon-cor: #3B2F2A ;  /* Cor dos ícones */
+--como-funciona-card-titulo-cor: #3B2F2A ;/* Cor do título de cada card */
+--como-funciona-card-texto-cor: #3B2F2A ; /* Cor do texto de cada card */
+/* ========== 10. SEÇÃO DE CONTATO ========== */
+--contato-bg: #F7F4EF ;                   /* Fundo da seção */
+--contato-titulo-cor: #3B2F2A ;           /* Cor do título "Fale Conosco" */
+--contato-titulo-destaque-cor: #3B2F2A ;  /* Cor do texto em destaque */
+--contato-divisor-cor: #7A7772;          /* Cor da linha divisória */
+--contato-subtitulo-cor: #3B2F2A ;        /* Cor do subtítulo */
+--contato-form-label-cor: #7A7772;       /* Cor dos labels do formulário */
+--contato-form-input-bg: #ffffff;        /* Fundo dos campos do formulário */
+--contato-form-input-texto-cor: #000000; /* Cor do texto dos campos */
+--contato-form-input-borda-cor: #000000; /* Cor da borda dos campos */
+--contato-form-input-borda-focus-cor: #7A7772; /* Cor da borda ao clicar */
+--contato-form-botao-bg: #ffffff;        /* Fundo do botão de enviar */
+--contato-form-botao-texto-cor: #7A7772; /* Cor do texto do botão */
+--contato-form-botao-hover-bg: #7A7772;  /* Fundo do botão ao passar o mouse */
+--contato-form-botao-hover-texto-cor: #ffffff; /* Cor do texto ao passar o mouse */
+--contato-info-bg: #ffffff;              /* Fundo do box de informações */
+--contato-info-titulo-cor: #7A7772;      /* Cor do título "Informações de Contato" */
+--contato-info-item-titulo-cor: #7A7772; /* Cor dos títulos dos itens */
+--contato-info-item-texto-cor: #7A7772;  /* Cor dos textos dos itens */
+--contato-info-icon-cor: #7A7772;        /* Cor dos ícones */
+--contato-redes-bg: #7A7772;             /* Fundo dos ícones de redes sociais */
+--contato-redes-texto-cor: #ffffff;      /* Cor dos ícones de redes sociais */
+--contato-redes-hover-bg: #000000;       /* Fundo ao passar o mouse */
+/* ========== 11. RODAPÉ (FOOTER) ========== */
+--footer-bg: #E8DFD2;                    /* Fundo do rodapé */
+--footer-texto-cor: #3B2F2A;             /* Cor do texto do rodapé */
+--footer-logo-tamanho: 160px;            /* Tamanho da logo no footer */
+/* ========== 12. BOTÃO WHATSAPP FLUTUANTE ========== */
+--whatsapp-float-bg: #25D366;            /* Fundo do botão */
+--whatsapp-float-hover-bg: #1ebe5d;      /* Fundo ao passar o mouse */
 }
+/* ========== APLICAÇÃO DAS VARIÁVEIS (NÃO PRECISA MEXER ABAIXO) ========== */
 body {
-background: var(--cor-fundo-geral);
+background: var(--cor-primaria);
 margin: 0;
 padding: 0;
-font-family: 'Poppins', sans-serif;
+font-family: var(--fonte-texto);
+color: var(--cor-branco);
 }
 /* ========== HEADER ========== */
 #mainHeader {
-color: var(--cor-texto-primaria);
-font-family: Arial, sans-serif;
+background-color: var(--header-bg);
+color: var(--header-menu-cor);
+font-family: var(--fonte-texto);
 }
 #mainHeader .header-container {
 padding: 1rem;
 }
 #mainHeader .header-logo {
-width: var(--logo-size-header);
-height: var(--logo-size-header);
+width: var(--header-logo-tamanho);
+height: var(--header-logo-tamanho);
 object-fit: contain;
 margin-right: 0.75rem;
 }
 #mainHeader .header-title {
 font-size: 1.5rem;
 font-weight: bold;
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-primaria));
+background: linear-gradient(90deg, var(--header-titulo-cor), var(--header-titulo-cor));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
 color: transparent;
+font-family: var(--fonte-titulos);
 }
 #mainHeader .header-title-span {
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria));
+background: linear-gradient(90deg, var(--header-titulo-cor), var(--header-titulo-destaque-cor));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
@@ -58,7 +172,7 @@ color: transparent;
 }
 #headerPhrase {
 font-size: 0.75rem;
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria));
+background: linear-gradient(90deg, var(--header-frase-cor), var(--header-frase-cor));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
@@ -70,16 +184,16 @@ gap: 2rem;
 list-style: none;
 }
 #mainHeader nav ul li a {
-color: #bbbbbb;
+color: var(--header-menu-cor);
 text-decoration: none;
 transition: color 0.3s;
 font-weight: bold;
 }
 #mainHeader nav ul li a:hover {
-color: var(--cor-hover);
+color: var(--header-menu-hover-cor);
 }
 #mainHeader button i {
-color: var(--cor-texto-secundaria);
+color: var(--cor-branco);
 font-size: 1.5rem;
 }
 /* ========== HERO SECTION ========== */
@@ -87,7 +201,7 @@ font-size: 1.5rem;
 position: relative;
 padding: 5rem 2rem;
 min-height: 600px;
-background: var(--cor-fundo-geral);
+background: var(--hero-bg);
 overflow: hidden;
 }
 #heroSection::before {
@@ -97,8 +211,8 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: url("ChatGPT\ Image\ 3\ de\ mar.\ de\ 2026\,\ 13_50_57.png") center center / cover no-repeat;
-opacity: 0.4;
+background: var(--hero-imagem-fundo) center center / cover no-repeat;
+opacity: var(--hero-imagem-opacity);
 z-index: 0;
 }
 #heroSection::after {
@@ -108,7 +222,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: rgba(39, 39, 39, 0.85);
+background: rgba(39, 39, 39, var(--hero-overlay-opacity));
 z-index: 1;
 }
 .hero-container {
@@ -136,13 +250,14 @@ text-align: left;
 .hero-title {
 font-size: 2rem;
 font-weight: bold;
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria), var(--cor-texto-secundaria));
+background: linear-gradient(90deg, var(--hero-titulo-cor), var(--hero-titulo-destaque-cor), var(--hero-titulo-destaque-cor));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
 color: transparent;
 line-height: 1.3;
 margin-bottom: 1.5rem;
+font-family: var(--fonte-titulos);
 }
 @media (min-width: 768px) {
 .hero-title {
@@ -150,18 +265,18 @@ font-size: 2.8rem;
 }
 }
 .hero-title-highlight {
-color: var(--cor-texto-secundaria);
+color: var(--hero-titulo-destaque-cor);
 }
 .hero-paragraph {
 font-size: 1.1rem;
-color: var(--cor-texto-secundaria);
+color: var(--hero-texto-cor);
 margin-bottom: 2rem;
 line-height: 1.6;
 max-width: 500px;
 }
 .hero-button {
-background-color: var(--cor-texto-secundaria);
-color: #000000;
+background-color: var(--hero-botao-bg);
+color: var(--hero-botao-texto-cor);
 border: none;
 padding: 0.875rem 2.5rem;
 border-radius: 0.5rem;
@@ -173,7 +288,8 @@ align-self: flex-start;
 cursor: pointer;
 }
 .hero-button:hover {
-background-color: var(--cor-hover);
+background-color: var(--hero-botao-hover-bg);
+color: var(--hero-botao-hover-texto-cor);
 transform: translateY(-2px);
 box-shadow: 0 4px 12px rgba(241, 154, 2, 0.3);
 }
@@ -188,24 +304,26 @@ max-width: 400px;
 height: auto;
 border-radius: 1rem;
 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-border: 3px solid var(--cor-hover);
+border: var(--hero-imagem-borda-tamanho) solid var(--hero-imagem-borda-cor);
 }
-/* ========== SEÇÃO SERVIÇOS - CARDS SIMPLIFICADOS ========== */
+/* ========== SEÇÃO SERVIÇOS ========== */
 #servicos {
 padding: 4rem 0;
 margin: 3rem 0;
+background-color: var(--servicos-bg);
 }
 #servicesTitle {
 font-size: 2rem;
 font-weight: bold;
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-primaria));
+background: linear-gradient(90deg, var(--servicos-titulo-cor), var(--servicos-titulo-cor));
 -webkit-background-clip: text;
 background-clip: text;
 color: transparent;
 text-align: center;
+font-family: var(--fonte-titulos);
 }
 #servicesTitle .text-gold {
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria));
+background: linear-gradient(90deg, var(--servicos-titulo-cor), var(--servicos-titulo-destaque-cor));
 -webkit-background-clip: text;
 background-clip: text;
 color: transparent;
@@ -213,7 +331,7 @@ color: transparent;
 .services-description {
 max-width: 900px;
 margin: 1rem auto 2rem;
-color: var(--cor-texto-secundaria);
+color: var(--servicos-descricao-cor);
 font-size: 1rem;
 text-align: center;
 }
@@ -244,8 +362,8 @@ align-items: center;
 }
 }
 .service-card {
-background: var(--cor-card-bg);
-border: 1px solid var(--cor-texto-primaria);
+background: var(--servicos-card-bg);
+border: 1px solid var(--servicos-card-borda-cor);
 border-radius: 0.75rem;
 padding: 2rem 1.5rem;
 transition: all 0.3s ease;
@@ -262,43 +380,43 @@ flex-shrink: 0;
 }
 .service-card:hover {
 transform: translateY(-5px);
-border-color: var(--cor-texto-secundaria);
+border-color: var(--servicos-card-borda-hover-cor);
 box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 .service-icon {
-color: var(--cor-texto-primaria);
+color: var(--servicos-card-icon-cor);
 font-size: 2.5rem;
 margin-bottom: 1.25rem;
 }
 .service-title {
 font-size: 1.35rem;
 font-weight: 600;
-color: var(--cor-texto-secundaria);
+color: var(--servicos-card-titulo-cor);
 margin-bottom: 1rem;
 line-height: 1.3;
 }
 .service-text {
-color: var(--cor-texto-primaria);
+color: var(--servicos-card-texto-cor);
 font-size: 0.95rem;
 line-height: 1.6;
 margin-bottom: 1.5rem;
 }
 .service-link {
-color: var(--cor-texto-secundaria);
+color: var(--servicos-card-link-cor);
 font-weight: 600;
 font-size: 0.9rem;
 text-decoration: none;
-border-bottom: 2px solid var(--cor-texto-primaria);
+border-bottom: 2px solid var(--servicos-card-borda-cor);
 padding-bottom: 2px;
 transition: all 0.3s;
 }
 .service-link:hover {
-border-bottom-color: var(--cor-texto-secundaria);
-color: var(--cor-texto-primaria);
+border-bottom-color: var(--servicos-card-link-hover-cor);
+color: var(--servicos-card-link-hover-cor);
 }
 /* ========== SEÇÃO SOBRE ========== */
 #sobre.custom-section {
-background: linear-gradient(135deg, var(--cor-fundo-geral), var(--cor-texto-primaria), var(--cor-fundo-geral));
+background: var(--sobre-bg);
 padding: 5rem 2rem;
 margin: 3rem 0;
 }
@@ -327,8 +445,8 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 #sobre .about-title {
 font-size: 2rem;
 font-weight: bold;
-font-family: 'Playfair Display', serif;
-color: #000000;
+font-family: var(--fonte-titulos);
+color: var(--sobre-titulo-cor);
 }
 @media (min-width: 768px) {
 #sobre .about-title {
@@ -336,7 +454,7 @@ font-size: 2.5rem;
 }
 }
 #sobre .about-paragraph {
-color: #000000;
+color: var(--sobre-texto-cor);
 font-size: 1rem;
 line-height: 1.6;
 margin-bottom: 1rem;
@@ -348,9 +466,9 @@ gap: 1rem;
 margin-top: 1.5rem;
 }
 #sobre .about-tag {
-background-color: var(--cor-texto-primaria);
-color: #000000;
-border: 1px solid #000000;
+background-color: var(--sobre-tag-bg);
+color: var(--sobre-tag-texto-cor);
+border: 1px solid var(--sobre-tag-borda-cor);
 padding: 0.5rem 1rem;
 border-radius: 999px;
 font-size: 0.875rem;
@@ -358,9 +476,9 @@ display: flex;
 align-items: center;
 gap: 0.5rem;
 }
-/* ========== DEPOIMENTOS - ESTILO GOOGLE REVIEWS ========== */
+/* ========== DEPOIMENTOS GOOGLE ========== */
 .testimonial-section {
-background-color: var(--cor-fundo-geral);
+background-color: var(--depoimentos-bg);
 padding: 5rem 0;
 }
 .testimonial-header {
@@ -368,10 +486,10 @@ text-align: center;
 margin-bottom: 3rem;
 }
 .testimonial-title {
-font-family: 'Playfair Display', serif;
+font-family: var(--fonte-titulos);
 font-size: 2.5rem;
 font-style: italic;
-color: var(--cor-texto-primaria);
+color: var(--depoimentos-titulo-cor);
 margin-bottom: 0.5rem;
 }
 .testimonial-title::after {
@@ -379,12 +497,12 @@ content: '';
 display: block;
 width: 60px;
 height: 2px;
-background: var(--cor-texto-primaria);
+background: var(--depoimentos-titulo-cor);
 margin: 1rem auto;
 }
 .testimonial-subtitle {
 font-size: 1rem;
-color: var(--cor-texto-primaria);
+color: var(--depoimentos-subtitulo-cor);
 max-width: 600px;
 margin: 0 auto;
 }
@@ -397,7 +515,8 @@ padding: 0 1rem;
 margin-bottom: 2.5rem;
 }
 .testimonial-card {
-background: #ffffff;
+background: var(--depoimentos-card-bg);
+color: var(--cor-preto);
 border-radius: 0.75rem;
 padding: 2rem;
 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -428,20 +547,20 @@ font-family: Arial, sans-serif;
 }
 .testimonial-author {
 font-weight: 600;
-color: #1f2937;
+color: var(--depoimentos-card-autor-cor);
 font-size: 1rem;
 margin-bottom: 0.25rem;
 }
 .testimonial-text {
 font-style: italic;
-color: #4b5563;
+color: var(--depoimentos-card-texto-cor);
 font-size: 0.95rem;
 line-height: 1.6;
 margin-bottom: 1rem;
 flex-grow: 1;
 }
 .testimonial-meta {
-color: #6b7280;
+color: var(--depoimentos-card-meta-cor);
 font-size: 0.85rem;
 display: flex;
 align-items: center;
@@ -452,17 +571,17 @@ display: flex;
 align-items: center;
 gap: 0.5rem;
 font-size: 0.85rem;
-color: #6b7280;
+color: var(--depoimentos-card-meta-cor);
 }
 .testimonial-photos i {
-color: #6b7280;
+color: var(--depoimentos-card-meta-cor);
 }
 .testimonial-button-container {
 text-align: center;
 }
 .testimonial-button {
-background-color: #374151;
-color: #ffffff;
+background-color: var(--depoimentos-botao-bg);
+color: var(--depoimentos-botao-texto-cor);
 padding: 0.875rem 2.5rem;
 border-radius: 2rem;
 text-decoration: none;
@@ -474,13 +593,13 @@ border: none;
 cursor: pointer;
 }
 .testimonial-button:hover {
-background-color: #1f2937;
+background-color: var(--depoimentos-botao-hover-bg);
 transform: translateY(-2px);
 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
-/* ========== WHATSAPP TESTIMONIALS - CAROUSEL ========== */
+/* ========== WHATSAPP DEPOIMENTOS - CAROUSEL ========== */
 .whatsapp-testimonials-section {
-background-color: var(--cor-fundo-geral);
+background-color: var(--whatsapp-depoimentos-bg);
 padding: 5rem 0;
 border-top: 1px solid rgba(122, 119, 114, 0.2);
 }
@@ -503,7 +622,8 @@ gap: 2rem;
 flex: 0 0 250px;
 width: 250px;
 height: 250px;
-background: #ffffff;
+background: var(--whatsapp-card-bg);
+border: 1px solid var(--whatsapp-card-borda-cor);
 border-radius: 1rem;
 padding: 1rem;
 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -534,13 +654,12 @@ object-fit: contain;
 object-position: center;
 display: block;
 }
-/* Carousel Controls */
 .carousel-btn {
 position: absolute;
 top: 50%;
 transform: translateY(-50%);
-background: var(--cor-texto-secundaria);
-color: var(--cor-texto-primaria);
+background: var(--whatsapp-carousel-btn-bg);
+color: var(--whatsapp-carousel-btn-texto-cor);
 border: none;
 width: 45px;
 height: 45px;
@@ -555,8 +674,8 @@ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 z-index: 10;
 }
 .carousel-btn:hover {
-background: var(--cor-texto-primaria);
-color: var(--cor-texto-secundaria);
+background: var(--whatsapp-carousel-btn-texto-cor);
+color: var(--whatsapp-carousel-btn-bg);
 transform: translateY(-50%) scale(1.1);
 }
 .carousel-btn.prev {
@@ -569,7 +688,6 @@ right: 0;
 opacity: 0.3;
 cursor: not-allowed;
 }
-/* Carousel Dots */
 .carousel-dots {
 display: flex;
 justify-content: center;
@@ -580,18 +698,18 @@ margin-top: 2rem;
 width: 10px;
 height: 10px;
 border-radius: 50%;
-background: rgba(122, 119, 114, 0.4);
+background: var(--whatsapp-carousel-dot-bg);
 cursor: pointer;
 transition: all 0.3s ease;
 border: none;
 }
 .carousel-dot.active {
-background: var(--cor-texto-secundaria);
+background: var(--whatsapp-carousel-dot-ativo-bg);
 width: 30px;
 border-radius: 5px;
 }
 .carousel-dot:hover {
-background: var(--cor-texto-primaria);
+background: var(--whatsapp-carousel-btn-texto-cor);
 }
 @media (max-width: 640px) {
 .whatsapp-carousel-container {
@@ -608,17 +726,17 @@ height: 35px;
 font-size: 1rem;
 }
 }
-/* ========== ABORDAGEM / COMO FUNCIONA ========== */
+/* ========== COMO FUNCIONA ========== */
 .approach-section {
-background: linear-gradient(135deg, var(--cor-fundo-geral), var(--cor-fundo-geral), var(--cor-fundo-geral));
-color: var(--cor-texto-secundaria);
+background: var(--como-funciona-bg);
+color: var(--cor-branco);
 padding: 4rem 0;
-font-family: 'Playfair Display', serif;
+font-family: var(--fonte-titulos);
 }
 .approach-title {
 font-size: 2.5rem;
 font-weight: bold;
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-primaria));
+background: linear-gradient(90deg, var(--como-funciona-titulo-cor), var(--como-funciona-titulo-cor));
 -webkit-background-clip: text;
 background-clip: text;
 color: transparent;
@@ -626,14 +744,14 @@ color: transparent;
 text-align: center;
 }
 .approach-title .text-gold {
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria));
+background: linear-gradient(90deg, var(--como-funciona-titulo-cor), var(--como-funciona-titulo-destaque-cor));
 -webkit-background-clip: text;
 background-clip: text;
 color: transparent;
 -webkit-text-fill-color: transparent;
 }
 .approach-subtitle {
-color: var(--cor-texto-secundaria);
+color: var(--como-funciona-subtitulo-cor);
 font-size: 1.125rem;
 max-width: 600px;
 margin: 0 auto 2rem auto;
@@ -686,7 +804,7 @@ max-width: 280px;
 }
 }
 .approach-step {
-background-color: rgba(255, 255, 255, 0.1);
+background-color: var(--como-funciona-card-bg);
 padding: 2rem;
 border-radius: 0.75rem;
 text-align: center;
@@ -703,17 +821,17 @@ box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 .approach-icon {
 font-size: 2.5rem;
-color: var(--cor-hover);
+color: var(--como-funciona-card-icon-cor);
 margin-bottom: 1rem;
 }
 .approach-step-title {
-color: var(--cor-texto-secundaria);
+color: var(--como-funciona-card-titulo-cor);
 font-size: 1.25rem;
 font-weight: bold;
 margin-bottom: 0.75rem;
 }
 .approach-step-text {
-color: var(--cor-texto-secundaria);
+color: var(--como-funciona-card-texto-cor);
 font-size: 0.95rem;
 line-height: 1.5;
 flex-grow: 1;
@@ -721,12 +839,13 @@ flex-grow: 1;
 /* ========== CONTATO ========== */
 .contact-section {
 padding: 80px 0;
-font-family: 'Playfair Display', serif;
+font-family: var(--fonte-titulos);
+background-color: var(--contato-bg);
 }
 .contact-title {
 font-size: 2.5rem;
 font-weight: bold;
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-primaria));
+background: linear-gradient(90deg, var(--contato-titulo-cor), var(--contato-titulo-cor));
 -webkit-background-clip: text;
 background-clip: text;
 color: transparent;
@@ -734,7 +853,7 @@ color: transparent;
 text-align: center;
 }
 .contact-title .text-gold {
-background: linear-gradient(90deg, var(--cor-texto-primaria), var(--cor-texto-secundaria));
+background: linear-gradient(90deg, var(--contato-titulo-cor), var(--contato-titulo-destaque-cor));
 -webkit-background-clip: text;
 background-clip: text;
 color: transparent;
@@ -743,13 +862,13 @@ color: transparent;
 .contact-divider {
 width: 80px;
 height: 4px;
-background-color: var(--cor-texto-primaria);
+background-color: var(--contato-divisor-cor);
 margin: 16px auto;
 border-radius: 2px;
 }
 .contact-subtitle {
 font-size: 1rem;
-color: var(--cor-texto-secundaria);
+color: var(--contato-subtitulo-cor);
 max-width: 600px;
 margin: 0 auto;
 text-align: center;
@@ -758,29 +877,29 @@ text-align: center;
 display: block;
 font-weight: 600;
 margin-bottom: 6px;
-color: var(--cor-texto-primaria);
+color: var(--contato-form-label-cor);
 }
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
 width: 100%;
 padding: 10px 14px;
-border: 1px solid #000000;
+border: 1px solid var(--contato-form-input-borda-cor);
 border-radius: 6px;
 font-size: 1rem;
-color: #000000;
-background-color: #ffffff;
+color: var(--contato-form-input-texto-cor);
+background-color: var(--contato-form-input-bg);
 transition: border-color 0.3s;
 }
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
 outline: none;
-border-color: var(--cor-hover);
+border-color: var(--contato-form-input-borda-focus-cor);
 }
 .contact-button {
-background-color: #ffffff;
-color: var(--cor-texto-primaria);
+background-color: var(--contato-form-botao-bg);
+color: var(--contato-form-botao-texto-cor);
 padding: 12px 24px;
 border: none;
 border-radius: 6px;
@@ -790,10 +909,11 @@ cursor: pointer;
 transition: background-color 0.3s;
 }
 .contact-button:hover {
-background-color: var(--cor-hover);
+background-color: var(--contato-form-botao-hover-bg);
+color: var(--contato-form-botao-hover-texto-cor);
 }
 .info-contato {
-background-color: #ffffff;
+background-color: var(--contato-info-bg);
 padding: 40px;
 border-radius: 8px;
 box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
@@ -809,7 +929,7 @@ margin: 0;
 .info-contato h3 {
 font-size: 1.5rem;
 font-weight: bold;
-color: var(--cor-texto-primaria);
+color: var(--contato-info-titulo-cor);
 margin-bottom: 30px;
 }
 .info-contato .item {
@@ -820,31 +940,31 @@ margin-bottom: 20px;
 }
 .info-contato .icon i {
 font-size: 1.5rem;
-color: var(--cor-texto-primaria);
+color: var(--contato-info-icon-cor);
 }
 .info-contato .titulo {
 font-size: 1.1rem;
 font-weight: bold;
-color: var(--cor-texto-primaria);
+color: var(--contato-info-item-titulo-cor);
 margin-bottom: 4px;
 }
 .info-contato .descricao {
 font-size: 0.95rem;
-color: var(--cor-texto-primaria);
+color: var(--contato-info-item-texto-cor);
 }
 .redes-sociais h4 {
 font-weight: bold;
 margin-top: 30px;
 margin-bottom: 10px;
-color: var(--cor-texto-primaria);
+color: var(--contato-info-item-titulo-cor);
 }
 .redes-icons {
 display: flex;
 gap: 12px;
 }
 .redes-icons a {
-background-color: var(--cor-texto-primaria);
-color: rgb(255, 255, 255);
+background-color: var(--contato-redes-bg);
+color: var(--contato-redes-texto-cor);
 width: 40px;
 height: 40px;
 display: flex;
@@ -855,12 +975,13 @@ font-size: 1.2rem;
 transition: background-color 0.3s;
 }
 .redes-icons a:hover {
-background-color: #000000;
+background-color: var(--contato-redes-hover-bg);
 }
 /* ========== FOOTER ========== */
 .footer {
-color: #a1a09e;
+color: var(--footer-texto-cor);
 padding: 2rem 0;
+background-color: var(--footer-bg);
 }
 .footer-container {
 max-width: 1200px;
@@ -882,8 +1003,8 @@ justify-content: space-between;
 }
 }
 .footer-logo {
-width: var(--logo-size-footer);
-height: var(--logo-size-footer);
+width: var(--footer-logo-tamanho);
+height: var(--footer-logo-tamanho);
 object-fit: contain;
 margin-right: 0.75rem;
 }
@@ -892,7 +1013,7 @@ font-weight: bold;
 font-size: 1.25rem;
 }
 .footer-title-span {
-color: #a1a09e;
+color: var(--footer-texto-cor);
 }
 .footer-subtitle {
 font-size: 0.75rem;
@@ -918,7 +1039,7 @@ margin-top: 0.5rem;
 position: fixed;
 bottom: 1.5rem;
 right: 1.5rem;
-background-color: #25D366;
+background-color: var(--whatsapp-float-bg);
 color: #ffffff;
 width: 3.5rem;
 height: 3.5rem;
@@ -932,7 +1053,7 @@ z-index: 999;
 text-decoration: none;
 }
 .whatsapp-button:hover {
-background-color: #1ebe5d;
+background-color: var(--whatsapp-float-hover-bg);
 transform: scale(1.1);
 }
 .whatsapp-button i {
@@ -942,12 +1063,11 @@ font-size: 1.5rem;
 </head>
 <body>
 <!-- Header -->
-<header id="mainHeader" class="bg-petroleum text-black z-40 shadow-lg">
+<header id="mainHeader" class="z-40 shadow-lg">
 <div class="container mx-auto px-6 py-4 header-container">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
-<!-- LOGO HEADER - Imagem da sua logo -->
-<img src="lml-Photoroom.png" alt="Mariana Leite Advocacia Logo" class="header-logo">
+<img src="" alt="Mariana Leite Advocacia Logo" class="header-logo">
 <div>
 <h1 class="title-font text-xl md:text-2xl font-bold header-title">
 Mariana Leite <span class="text-gold header-title-span">Advocacia</span>
@@ -969,16 +1089,15 @@ Mariana Leite <span class="text-gold header-title-span">Advocacia</span>
 </div>
 </div>
 </header>
-
 <!-- Hero Section -->
 <section id="heroSection">
 <div class="hero-container">
 <div class="hero-content">
 <h2 id="heroTitle" class="hero-title">
-"Especialistas <span class="hero-title-highlight">em transformar</span> dívidas em soluções e recomeços"
+"Está pagando <span class="hero-title-highlight">juros abusivos</span> ou caiu em um golpe?"
 </h2>
 <p class="hero-paragraph">
-Atuação especializada em Direito Bancário e do Consumidor, com análise técnica detalhada e estratégia personalizada para cada caso.
+Podemos te ajudar a reduzir o valor da sua dívida e recuperar valores.
 </p>
 <a href="#contato" class="hero-button">Solicitar análise do meu caso</a>
 </div>
@@ -987,7 +1106,6 @@ Atuação especializada em Direito Bancário e do Consumidor, com análise técn
 </div>
 </div>
 </section>
-
 <!-- Seção de Serviços -->
 <section id="servicos" class="py-16">
 <div class="text-center mb-8">
@@ -1021,7 +1139,6 @@ Identificamos cobranças irregulares, empréstimos não contratados e tarifas in
 </a>
 </div>
 </section>
-
 <!-- About Section -->
 <section id="sobre" class="custom-section">
 <div class="container mx-auto px-6">
@@ -1049,13 +1166,12 @@ Minha atuação é pautada na análise detalhada de documentos, na construção 
 </div>
 </div>
 </section>
-
 <!-- Testimonials - Google Reviews Style -->
 <section class="testimonial-section">
 <div class="container mx-auto px-4">
 <div class="testimonial-header">
 <h2 class="testimonial-title">Avaliações do Google</h2>
-<p class="testimonial-subtitle">Veja o que nossas pacientes dizem sobre a experiência na clínica</p>
+<p class="testimonial-subtitle">Veja o que os clientes estão falando</p>
 </div>
 <div class="testimonials-container">
 <div class="testimonial-card">
@@ -1124,7 +1240,6 @@ Fiquei muito satisfeito com o trabalho, eficiência e dedicação da Dra Mariana
 </div>
 </div>
 </section>
-
 <!-- WhatsApp Testimonials Section - CAROUSEL -->
 <section class="whatsapp-testimonials-section">
 <div class="container mx-auto px-4">
@@ -1138,31 +1253,26 @@ Fiquei muito satisfeito com o trabalho, eficiência e dedicação da Dra Mariana
 </button>
 <div class="whatsapp-carousel">
 <div class="whatsapp-carousel-track">
-<!-- Card 1 -->
 <div class="whatsapp-card">
 <div class="whatsapp-image-container">
 <img src="whatsapp-print-1.jpg" alt="Depoimento WhatsApp 1" class="whatsapp-image">
 </div>
 </div>
-<!-- Card 2 -->
 <div class="whatsapp-card">
 <div class="whatsapp-image-container">
 <img src="whatsapp-print-2.jpg" alt="Depoimento WhatsApp 2" class="whatsapp-image">
 </div>
 </div>
-<!-- Card 3 -->
 <div class="whatsapp-card">
 <div class="whatsapp-image-container">
 <img src="whatsapp-print-3.jpg" alt="Depoimento WhatsApp 3" class="whatsapp-image">
 </div>
 </div>
-<!-- Card 4 -->
 <div class="whatsapp-card">
 <div class="whatsapp-image-container">
 <img src="whatsapp-print-4.jpg" alt="Depoimento WhatsApp 4" class="whatsapp-image">
 </div>
 </div>
-<!-- Card 5 -->
 <div class="whatsapp-card">
 <div class="whatsapp-image-container">
 <img src="whatsapp-print-5.jpg" alt="Depoimento WhatsApp 5" class="whatsapp-image">
@@ -1183,7 +1293,6 @@ Fiquei muito satisfeito com o trabalho, eficiência e dedicação da Dra Mariana
 </div>
 </div>
 </section>
-
 <!-- Team/Approach Section -->
 <section id="equipe" class="approach-section relative overflow-hidden">
 <div class="relative z-20 container mx-auto px-6 py-16 text-white">
@@ -1220,7 +1329,6 @@ Fiquei muito satisfeito com o trabalho, eficiência e dedicação da Dra Mariana
 </div>
 </div>
 </section>
-
 <!-- Contact Section -->
 <section id="contato" class="contact-section">
 <div class="container mx-auto px-6">
@@ -1290,13 +1398,11 @@ Preencha o formulário e fale com nossa equipe de forma 100% online, sem burocra
 </div>
 </div>
 </section>
-
 <!-- Footer -->
 <footer id="footerSection" class="footer">
 <div class="footer-container">
 <div class="footer-content">
 <div class="footer-brand mover-esquerda">
-<!-- LOGO FOOTER - Imagem da sua logo -->
 <img src="lml-Photoroom.png" alt="Mariana Leite Advocacia Logo" class="footer-logo">
 <div>
 <h2 class="footer-title"> <span class="footer-title-span"></span></h2>
@@ -1310,18 +1416,13 @@ Preencha o formulário e fale com nossa equipe de forma 100% online, sem burocra
 </div>
 </div>
 </footer>
-
 <!-- WhatsApp Float Button -->
 <a href="https://wa.me/5517996815440" class="whatsapp-button" target="_blank" rel="noopener noreferrer" aria-label="Contato WhatsApp">
 <i class="fab fa-whatsapp"></i>
 </a>
-
 <!-- Scripts -->
 <script>
-// Atualiza o ano no footer
 document.getElementById("anoAtual").textContent = new Date().getFullYear();
-
-// Formulário envia para WhatsApp
 document.querySelector('.contact-form')?.addEventListener('submit', function (e) {
 e.preventDefault();
 const nome = document.getElementById('nome').value.trim();
@@ -1329,24 +1430,19 @@ const email = document.getElementById('email').value.trim();
 const telefone = document.getElementById('telefone').value.trim();
 const assunto = document.getElementById('assunto').value.trim();
 const mensagem = document.getElementById('mensagem').value.trim();
-
 if (!nome || !telefone || !mensagem) {
 alert('Por favor, preencha nome, telefone e mensagem.');
 return;
 }
-
 const texto =
 'Olá! Gostaria de falar sobre: ' + (assunto || 'Assunto não informado') + '%0A%0A' +
 '*Nome:* ' + nome + '%0A' +
 '*Telefone:* ' + telefone + '%0A' +
 '*Email:* ' + (email || 'Não informado') + '%0A' +
 '*Mensagem:* ' + mensagem;
-
 const numero = '5517996815440';
 window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`, '_blank');
 });
-
-// Rolagem suave para links âncora
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 anchor.addEventListener('click', function (e) {
 const target = document.querySelector(this.getAttribute('href'));
@@ -1356,8 +1452,6 @@ target.scrollIntoView({ behavior: 'smooth' });
 }
 });
 });
-
-// Menu mobile (simples toggle)
 document.querySelector('button.md\\:hidden')?.addEventListener('click', function() {
 const nav = document.querySelector('#mainHeader nav');
 if (nav) {
@@ -1371,8 +1465,6 @@ nav.classList.toggle('bg-[#272727]');
 nav.classList.toggle('p-4');
 }
 });
-
-// WhatsApp Carousel Functionality
 const track = document.querySelector('.whatsapp-carousel-track');
 const cards = document.querySelectorAll('.whatsapp-card');
 const prevBtn = document.querySelector('.carousel-btn.prev');
@@ -1380,68 +1472,52 @@ const nextBtn = document.querySelector('.carousel-btn.next');
 const dots = document.querySelectorAll('.carousel-dot');
 let currentIndex = 0;
 const cardWidth = 250;
-const gap = 32; // 2rem = 32px
+const gap = 32;
 const totalCards = cards.length;
 let cardsPerView = getCardsPerView();
-
 function getCardsPerView() {
 const containerWidth = document.querySelector('.whatsapp-carousel-container').offsetWidth;
-const visibleWidth = containerWidth - 96; // 3rem padding左右 = 96px
+const visibleWidth = containerWidth - 96;
 return Math.floor(visibleWidth / (cardWidth + gap));
 }
-
 function updateCarousel() {
 const offset = -(currentIndex * (cardWidth + gap));
 track.style.transform = `translateX(${offset}px)`;
-
-// Update dots
 dots.forEach((dot, index) => {
 dot.classList.toggle('active', index === currentIndex);
 });
-
-// Update buttons
 prevBtn.disabled = currentIndex === 0;
 nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
 }
-
 function nextSlide() {
 if (currentIndex < totalCards - cardsPerView) {
 currentIndex++;
 updateCarousel();
 }
 }
-
 function prevSlide() {
 if (currentIndex > 0) {
 currentIndex--;
 updateCarousel();
 }
 }
-
-// Event listeners
 nextBtn.addEventListener('click', nextSlide);
 prevBtn.addEventListener('click', prevSlide);
-
 dots.forEach((dot, index) => {
 dot.addEventListener('click', () => {
 currentIndex = index;
 updateCarousel();
 });
 });
-
-// Touch/Swipe support
 let touchStartX = 0;
 let touchEndX = 0;
-
 track.addEventListener('touchstart', (e) => {
 touchStartX = e.changedTouches[0].screenX;
 });
-
 track.addEventListener('touchend', (e) => {
 touchEndX = e.changedTouches[0].screenX;
 handleSwipe();
 });
-
 function handleSwipe() {
 const swipeThreshold = 50;
 const diff = touchStartX - touchEndX;
@@ -1453,8 +1529,6 @@ prevSlide();
 }
 }
 }
-
-// Handle resize
 window.addEventListener('resize', () => {
 cardsPerView = getCardsPerView();
 if (currentIndex > totalCards - cardsPerView) {
@@ -1462,8 +1536,6 @@ currentIndex = totalCards - cardsPerView;
 }
 updateCarousel();
 });
-
-// Initialize
 updateCarousel();
 </script>
 </body>
