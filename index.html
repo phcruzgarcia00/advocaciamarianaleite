@@ -46,7 +46,7 @@ Não precisa mexer no resto do código!
 --hero-imagem-borda-cor: #ffffff;        /* Cor da borda da imagem */
 --hero-imagem-borda-tamanho: 3px;        /* Tamanho da borda da imagem */
 --hero-imagem-fundo: url("fundo_cores_alteradas.png"); /* Imagem de fundo */
---hero-imagem-opacity: 1.7;              /* Opacidade da imagem de fundo (0.1 a 1.0) */
+--hero-imagem-opacity: 1.0;              /* Opacidade da imagem de fundo (0.1 a 1.0) */
 --hero-overlay-opacity: 0.0;             /* Opacidade do overlay escuro (0.1 a 1.0) */
 /* ========== 5. SEÇÃO DE SERVIÇOS ========== */
 --servicos-bg: #F7F4EF;                  /* Fundo da seção de serviços */
@@ -129,6 +129,8 @@ Não precisa mexer no resto do código!
 /* ========== 12. BOTÃO WHATSAPP FLUTUANTE ========== */
 --whatsapp-float-bg: #25D366;            /* Fundo do botão */
 --whatsapp-float-hover-bg: #1ebe5d;      /* Fundo ao passar o mouse */
+/* ========== 13. DIVISÓRIAS DE SEÇÃO (NOVO) ========== */
+--divisoria-secao-cor: rgba(122, 119, 114, 0.4); /* Cor das linhas entre as seções */
 }
 /* ========== APLICAÇÃO DAS VARIÁVEIS (NÃO PRECISA MEXER ABAIXO) ========== */
 body {
@@ -143,6 +145,7 @@ color: var(--cor-branco);
 background-color: var(--header-bg);
 color: var(--header-menu-cor);
 font-family: var(--fonte-texto);
+border-bottom: 1px solid var(--divisoria-secao-cor); /* Divisória adicionada */
 }
 #mainHeader .header-container {
 padding: 1rem;
@@ -311,6 +314,7 @@ border: var(--hero-imagem-borda-tamanho) solid var(--hero-imagem-borda-cor);
 padding: 4rem 0;
 margin: 3rem 0;
 background-color: var(--servicos-bg);
+border-top: 1px solid var(--divisoria-secao-cor); /* Divisória adicionada */
 }
 #servicesTitle {
 font-size: 2rem;
@@ -419,6 +423,7 @@ color: var(--servicos-card-link-hover-cor);
 background: var(--sobre-bg);
 padding: 5rem 2rem;
 margin: 3rem 0;
+border-top: 1px solid var(--divisoria-secao-cor); /* Divisória adicionada */
 }
 #sobre .about-container {
 display: flex;
@@ -480,6 +485,7 @@ gap: 0.5rem;
 .testimonial-section {
 background-color: var(--depoimentos-bg);
 padding: 5rem 0;
+border-top: 1px solid var(--divisoria-secao-cor); /* Divisória adicionada */
 }
 .testimonial-header {
 text-align: center;
@@ -601,7 +607,7 @@ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 .whatsapp-testimonials-section {
 background-color: var(--whatsapp-depoimentos-bg);
 padding: 5rem 0;
-border-top: 1px solid rgba(122, 119, 114, 0.2);
+border-top: 1px solid var(--divisoria-secao-cor); /* Divisória adicionada */
 }
 .whatsapp-carousel-container {
 position: relative;
@@ -732,6 +738,7 @@ background: var(--como-funciona-bg);
 color: var(--cor-branco);
 padding: 4rem 0;
 font-family: var(--fonte-titulos);
+border-top: 1px solid var(--divisoria-secao-cor); /* Divisória adicionada */
 }
 .approach-title {
 font-size: 2.5rem;
@@ -841,6 +848,7 @@ flex-grow: 1;
 padding: 80px 0;
 font-family: var(--fonte-titulos);
 background-color: var(--contato-bg);
+border-top: 1px solid var(--divisoria-secao-cor); /* Divisória adicionada */
 }
 .contact-title {
 font-size: 2.5rem;
@@ -982,6 +990,7 @@ background-color: var(--contato-redes-hover-bg);
 color: var(--footer-texto-cor);
 padding: 2rem 0;
 background-color: var(--footer-bg);
+border-top: 1px solid var(--divisoria-secao-cor); /* Divisória adicionada */
 }
 .footer-container {
 max-width: 1200px;
